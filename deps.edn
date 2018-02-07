@@ -1,0 +1,4 @@
+{:deps {mogenslund/liquid {:git/url "https://github.com/mogenslund/liquid.git" :rev "9b335028e4e2cd4bf81ad845f683e7c6e83b9f61"}
+        mogenslund/additives {:git/url "https://github.com/mogenslund/additives.git" :rev "17874b2388c66188f3fbc45be316e96603099aa1"}
+        com.google.code.gson/gson {:mvn/version "2.8.2"}}
+ :paths ["src"]}
