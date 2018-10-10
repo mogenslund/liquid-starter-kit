@@ -2,9 +2,7 @@
   (:require [clojure.string :as str]
             [dk.salza.liq.core :as liq-core]
             [dk.salza.liq.editor :as editor]
-            [dk.salza.additives.blob :refer :all]
-            [dk.salza.additives.mindmap :refer [mindmap mindmap-to-indent]]
-            [dk.salza.additives.freemove :as freemove])
+            [dk.salza.additives.blob :refer :all])
   (:import [com.google.gson GsonBuilder JsonParser]))
 
 (defn pretty-json
@@ -48,6 +46,4 @@
 ;; Make functions available directly in editor
 (ns user
   (:require [dk.salza.liq.tools.cshell :refer :all]
-            [dk.salza.additives.blob :refer :all]
-            [dk.salza.additives.mindmap :refer :all]
-            [dk.salza.additives.freemove :as freemove]))
+            [dk.salza.additives.blob :refer :all]))
