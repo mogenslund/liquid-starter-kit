@@ -2,7 +2,8 @@
   (:require [clojure.string :as str]
             [dk.salza.liq.core :as liq-core]
             [dk.salza.liq.editor :as editor]
-            [dk.salza.additives.blob :refer :all])
+            [dk.salza.additives.blob :refer :all]
+            [dk.salza.dired :as dired])
   (:import [com.google.gson GsonBuilder JsonParser]))
 
 (defn pretty-json
@@ -33,6 +34,7 @@
   (editor/set-global-key :f5 pretty-json-selection)
 
   ;; Typeahead C-space functions
+  (editor/add-interactive "dired" #(dired/run (editor/get-folder)))
   (editor/add-interactive "Pretty json" pretty-json-selection)
   (editor/add-interactive "My typeahead" mytypeahead)
 
