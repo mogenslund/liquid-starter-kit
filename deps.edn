@@ -1,5 +1,15 @@
-{:deps {mogenslund/liquid {:git/url "https://github.com/mogenslund/liquid.git" :sha "37978ed3c56ed2e183af36853d6997bc443a6cb7"}
-        mogenslund/additives {:git/url "https://github.com/mogenslund/additives.git" :sha "7f56c2df4b13d86bc92fc954ab44992c55a6c8ac"}
-        mogenslund/dired {:git/url "https://github.com/mogenslund/dired.git" :sha "3f7641e5a009c6b111242662a3275cdf0a1f1ef4"}
-        com.google.code.gson/gson {:mvn/version "2.8.2"}}
+{:deps
+ {mogenslund/liquid
+  {:git/url "https://github.com/mogenslund/liquid.git",
+   :tag "v0.9.6",
+   :sha "69189c4691d2e3525c175c956f957decb681fdd2"},
+  mogenslund/additives
+  {:git/url "https://github.com/mogenslund/additives.git",
+   :tag "v0.1.0",
+   :sha "7f56c2df4b13d86bc92fc954ab44992c55a6c8ac"},
+  mogenslund/dired
+  {:git/url "https://github.com/mogenslund/dired.git",
+   :tag "v0.1.0",
+   :sha "00582f8ef4b389ebad75ce7cd411981671b0fa63"},
+  com.google.code.gson/gson {:mvn/version "2.8.2"}},
  :paths ["src"]}
