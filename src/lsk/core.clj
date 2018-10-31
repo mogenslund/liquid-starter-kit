@@ -3,6 +3,7 @@
             [dk.salza.liq.core :as liq-core]
             [dk.salza.liq.editor :as editor]
             [dk.salza.additives.blob :refer :all]
+            [dk.salza.emacs-jack-in :as emacs-jack-in]
             [dk.salza.dired :as dired])
   (:import [com.google.gson GsonBuilder JsonParser]))
 
@@ -31,7 +32,8 @@
   (liq-core/init-editor)
 
   ;; Global keybindings
-  (editor/set-global-key :f5 pretty-json-selection)
+  (editor/set-global-key "f5" pretty-json-selection)
+  (editor/set-global-key "f8" emacs-jack-in/forward-sexp)
 
   ;; Typeahead C-space functions
   (editor/add-interactive "dired" #(dired/run (editor/get-folder)))
