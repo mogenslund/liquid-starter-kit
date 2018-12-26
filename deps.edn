@@ -1,8 +1,8 @@
 {:deps
  {mogenslund/liquid
   {:git/url "https://github.com/mogenslund/liquid.git",
-   :tag "v0.9.6",
-   :sha "69189c4691d2e3525c175c956f957decb681fdd2"},
+   :tag "v1.0.0",
+   :sha "0bca7c16638ec20ed692ae0f16339cfe21f022f0"},
   mogenslund/additives
   {:git/url "https://github.com/mogenslund/additives.git",
    :tag "v0.1.0",
