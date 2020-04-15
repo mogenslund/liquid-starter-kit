@@ -1,10 +1,9 @@
 (ns lsk.core
   (:require [clojure.string :as str]
-            [dk.salza.liq.core :as liq-core]
-            [dk.salza.liq.editor :as editor]
-            [dk.salza.additives.blob :refer :all]
-            [dk.salza.emacs-jack-in :as emacs-jack-in]
-            [dk.salza.dired :as dired])
+            [liq.core :as liq-core]
+            [liq.buffer :as buffer]
+            [liq.editor :as editor]
+            [liq.modes.typeahead-mode :as typeahead-mode])
   (:import [com.google.gson GsonBuilder JsonParser]))
 
 (defn pretty-json
@@ -14,40 +13,29 @@
     (.toJson gson (.parse jp text))))
 
 (defn pretty-json-selection
-  []
-  (let [text (editor/get-selection)
+  [buf]
+  (let [text (buffer/get-selected-text buf)
         json (pretty-json text)]
-    (editor/delete-selection)
-    (editor/insert json)))
-  
-(defn mytypeahead
+    (if (not= text json)
+      (-> buf
+          buffer/delete
+          (buffer/insert-string json)) 
+      buf)))
+
+(defn my-typeahead
   []
-  (editor/typeahead (list "aaa" "bbb" "ccc") str editor/insert))
+  (typeahead-mode/run ["apple" "ananas" "pineapple" "grape" "kiwi"]
+    str
+    #(editor/apply-to-buffer (fn [buf] (buffer/insert-string buf %)))))
 
 (defn -main
   [& args]
-  ;; Initialize
-  (liq-core/set-defaults)
-  (apply liq-core/startup args)
-  (liq-core/init-editor)
+  (apply liq-core/-main args)
 
-  ;; Global keybindings
-  (editor/set-global-key "f5" pretty-json-selection)
-  (editor/set-global-key "f8" emacs-jack-in/forward-sexp)
+  (swap! editor/state
+          assoc-in [::editor/modes :fundamental-mode :normal "f7"]
+          #(editor/apply-to-buffer pretty-json-selection))
 
-  ;; Typeahead C-space functions
-  (editor/add-interactive "dired" #(dired/run (editor/get-folder)))
-  (editor/add-interactive "Pretty json" pretty-json-selection)
-  (editor/add-interactive "My typeahead" mytypeahead)
+  (swap! editor/state assoc-in [::editor/commands :my-typeahead] my-typeahead)
+  (swap! editor/state assoc-in [::editor/modes :fundamental-mode :normal "f8"] :my-typeahead))
 
-  ;; Search paths for typeahead
-  (editor/add-searchpath "/tmp")
-
-  ;; Snippets for typeahead
-  (editor/add-snippet "{topic: \"json\", why: \"Because I can\"}"))
-
-
-;; Make functions available directly in editor
-(ns user
-  (:require [dk.salza.liq.tools.cshell :refer :all]
-            [dk.salza.additives.blob :refer :all]))

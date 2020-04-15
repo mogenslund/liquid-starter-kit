@@ -1,19 +1,7 @@
 {:deps
  {mogenslund/liquid
   {:git/url "https://github.com/mogenslund/liquid.git",
-   :tag "v1.0.0",
-   :sha "0bca7c16638ec20ed692ae0f16339cfe21f022f0"},
-  mogenslund/additives
-  {:git/url "https://github.com/mogenslund/additives.git",
-   :tag "v0.1.0",
-   :sha "7f56c2df4b13d86bc92fc954ab44992c55a6c8ac"},
-  mogenslund/dired
-  {:git/url "https://github.com/mogenslund/dired.git",
-   :tag "v0.1.0",
-   :sha "00582f8ef4b389ebad75ce7cd411981671b0fa63"},
-  mogenslund/emacs-jack-in
-  {:git/url "https://github.com/mogenslund/emacs-jack-in.git",
-   :tag "v0.1.1",
-   :sha "409964e83647d640e4e14098030ba5af1056c325"},
+   :tag "",
+   :sha "2ba63d5be31e782d65d5e3d7842496a0d2f46129"},
   com.google.code.gson/gson {:mvn/version "2.8.2"}},
  :paths ["src"]}
